@@ -1,7 +1,7 @@
 {
-  "name": "lookup-server",
+  "name": "react-quick-api-server",
   "version": "0.0.1",
-  "private": true,
+  "author": "Jake Foraker <jakeforaker83@gmail.com> (https://github.com/jforaker)",
   "babel": {
     "presets": [
       "es2015",

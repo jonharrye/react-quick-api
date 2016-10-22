@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
@@ -26,12 +28,19 @@ app.get('/api/objects', (req, res) => {
         error: err
       })
     }
-    res.json({data: JSONS.deserialize(result.object)});
+    res.json(JSONS.deserialize(result.object));
   })
 });
 
 app.post('/api/objects', (req, res) => {
   const body = req.body;
+  try {
+    JSON.parse(body.object);
+    console.log('valid');
+  } catch (err) {
+    console.log('err invalid json', err);
+    return res.json({error: 'invalid json'})
+  }
   const obj = assign(body, {
     object_id: uuid.v4(),
     object: JSONS.serialize(body.object)

@@ -1,20 +1,19 @@
 /* eslint-disable no-undef */
 const request = require('superagent-bluebird-promise');
-
-const url = process.env.NODE_ENV === 'production' ? 'https://lookup-server-ofdaisistk.now.sh' : 'http://localhost:3000';
+import url from './config';
 
 export function get(query) {
-  console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
+  const generatedUrl = `${url}/api/objects?object_id=${query}`;
   return request
     .get(`${url}/api/objects`)
     .query(`object_id=${query}`)
     .then(checkStatus)
     .then(function (res) {
-      console.info('res get', res);
-      return res.body
+      return {
+        body: res.body, generatedUrl: generatedUrl
+      }
     })
     .catch(err => {
-      console.warn('err  catch GET', err);
       return new Error(err);
     })
 }
@@ -25,17 +24,17 @@ export function post(object) {
     .send({object: object})
     .then(checkStatus)
     .then(function (res) {
-      console.info('res post', res);
+      if (res.body.error){
+        return res.body.error
+      }
       return res.body
     })
     .catch(err => {
-      console.warn('err  catch POST', err);
       return new Error(err);
     });
 }
 
 function checkStatus(response) {
-  console.log('response  responseresponseresponseresponse', response);
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {

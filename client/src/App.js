@@ -1,13 +1,11 @@
-// import React from 'react';
+
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
-import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {blue500, red500, pink500} from 'material-ui/styles/colors';
 import Help from 'material-ui/svg-icons/action/help';
 import Search from './Search';
 
@@ -23,31 +21,25 @@ const muiTheme = getMuiTheme(darkBaseTheme);
 class App extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
-
     this.state = {
       open: false,
     };
   }
 
   handleRequestClose() {
-    this.setState({
-      open: false,
-    });
+    this.setState({ open: false });
   }
 
   handleTouchTap() {
-    this.setState({
-      open: true,
-    });
+    this.setState({ open: true });
   }
 
   render() {
     const standardActions = (
       <FlatButton
-        label="Ok"
+        label="Cool"
         primary={true}
         onTouchTap={this.handleRequestClose}
       />
@@ -60,7 +52,7 @@ class App extends Component {
             open={this.state.open}
             actions={standardActions}
             onRequestClose={this.handleRequestClose}>
-            paste in a sample api response to generate a quick api
+            paste in a sample response to generate a quick JSON api (must be valid JSON!)
           </Dialog>
           <RaisedButton
             secondary={true}
