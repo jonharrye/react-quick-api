@@ -29,3 +29,5 @@ Notes:
 Using env variables with now.sh
 `now secrets add db_pass "fooPassword!"`
 `now -e NODE_ENV=production -e DB_USER=@db_user -e DB_PASS=@db_pass -e DB_URL=@db_url`
+
+`git push origin `git subtree split --prefix client/build master`:gh-pages --force`
