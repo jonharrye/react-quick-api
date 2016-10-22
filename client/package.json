@@ -2,7 +2,7 @@
   "name": "react-quick-api-client",
   "version": "0.1.0",
   "author": "Jake Foraker <jakeforaker83@gmail.com> (https://github.com/jforaker)",
-  "homepage": "http://jforaker.github.io/react-quick-api",
+  "homepage": "http://jforaker.github.io",
   "devDependencies": {
     "enzyme": "^2.4.1",
     "react-addons-test-utils": "^15.3.2",
