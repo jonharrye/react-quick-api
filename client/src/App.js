@@ -1,21 +1,78 @@
-import React from 'react';
+// import React from 'react';
+import React, {Component} from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
+import {deepOrange500} from 'material-ui/styles/colors';
+import FlatButton from 'material-ui/FlatButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {blue500, red500, pink500} from 'material-ui/styles/colors';
+import Help from 'material-ui/svg-icons/action/help';
 import Search from './Search';
 
-const App = React.createClass({
-  getInitialState: function () {
-    return {
-      selectedFoods: [],
-    };
+const styles = {
+  container: {
+    textAlign: 'center',
+    paddingTop: 40,
   },
-  render: function () {
+};
+
+const muiTheme = getMuiTheme(darkBaseTheme);
+
+class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleTouchTap = this.handleTouchTap.bind(this);
+
+    this.state = {
+      open: false,
+    };
+  }
+
+  handleRequestClose() {
+    this.setState({
+      open: false,
+    });
+  }
+
+  handleTouchTap() {
+    this.setState({
+      open: true,
+    });
+  }
+
+  render() {
+    const standardActions = (
+      <FlatButton
+        label="Ok"
+        primary={true}
+        onTouchTap={this.handleRequestClose}
+      />
+    );
+
     return (
-      <div className='App'>
-        <div className='ui text container'>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div style={styles.container}>
+          <Dialog
+            open={this.state.open}
+            actions={standardActions}
+            onRequestClose={this.handleRequestClose}>
+            paste in a sample api response to generate a quick api
+          </Dialog>
+          <RaisedButton
+            secondary={true}
+            icon={<Help color="#fff"/>}
+            onTouchTap={this.handleTouchTap}
+          />
+          <h1>quick api</h1>
           <Search />
         </div>
-      </div>
+      </MuiThemeProvider>
     );
-  },
-});
+  }
+}
 
 export default App;

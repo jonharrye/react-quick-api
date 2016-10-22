@@ -25,3 +25,7 @@ npm start
 
 `create-react-app` configures a Webpack development server to run on `localhost:3001`. This development server will bundle all static assets located under `client/src/`. All requests to `localhost:3000` will serve `client/index.html` which will include Webpack's `bundle.js`.
 
+Notes:
+Using env variables with now.sh
+`now secrets add db_pass "fooPassword!"`
+`now -e NODE_ENV=production -e DB_USER=@db_user -e DB_PASS=@db_pass -e DB_URL=@db_url`

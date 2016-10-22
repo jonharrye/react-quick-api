@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App {
@@ -10,4 +10,13 @@ body {
 
 #search {
   margin-top: 5em;
+}
+
+.btn-container {
+  margin-top: 25px;
+}
+.res {
+  margin: 0 auto;
+  width: 50%;
+  text-align: left;
 }
