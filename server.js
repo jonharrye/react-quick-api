@@ -23,7 +23,6 @@ app.get('/api/objects', (req, res) => {
   const id = req.query.object_id;
   db.collection('objects').findOne({object_id: id}, (err, result) => {
     if (err) {
-      console.log('findOne error', err);
       return res.json({
         error: err
       })
