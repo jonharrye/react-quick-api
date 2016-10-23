@@ -1,6 +1,5 @@
 
 import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -54,13 +53,10 @@ class App extends Component {
             onRequestClose={this.handleRequestClose}>
             paste in a sample response to generate a quick JSON api (must be valid JSON!)
           </Dialog>
-          <RaisedButton
-            secondary={true}
-            icon={<Help color="#fff"/>}
-            onTouchTap={this.handleTouchTap}
-          />
-          <h1>quick api</h1>
+          <h1>quick api <Help className="help" color="#fff" onTouchTap={this.handleTouchTap}/>
+          </h1>
           <Search />
+
         </div>
       </MuiThemeProvider>
     );

@@ -50,17 +50,14 @@ class Generated extends Component {
     ];
 
     return (
-      <div>
-        <Dialog
-          title="Congrats, your api is live!"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
-          <Tpl generatedUrl={this.props.generatedUrl} />
-        </Dialog>
-      </div>
+      <Dialog
+        title="Congrats, your api is live!"
+        actions={actions}
+        modal={false}
+        open={this.state.open}
+        onRequestClose={this.handleClose}>
+        <Tpl generatedUrl={this.props.generatedUrl}/>
+      </Dialog>
     );
   }
 }

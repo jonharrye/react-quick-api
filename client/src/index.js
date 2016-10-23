@@ -12,11 +12,19 @@ const About = () => (
   </div>
 );
 
+const NoMatch = ({location}) => (
+  <div>
+    <h2>Whoops</h2>
+    <p>Sorry but {location.pathname} didn’t match any pages</p>
+  </div>
+);
+
 const ReactQuickApi = () => (
   <BrowserRouter>
     <div>
       <Match exactly pattern="/" component={App}/>
       <Match pattern="/about" component={About}/>
+      <Miss component={NoMatch}/>
     </div>
   </BrowserRouter>
 );

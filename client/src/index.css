@@ -10,6 +10,15 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+  color: rgb(48, 48, 48);
+}
+
+.help {
+  cursor: pointer;
+  height: 20px !important;
+}
+
 .App {
   margin-top: 7em;
 }

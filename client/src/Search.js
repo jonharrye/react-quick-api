@@ -6,18 +6,18 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Generated from './Generated';
 import {post, get} from './Client';
+import CircularProgress from 'material-ui/CircularProgress';
 
+const CircularProgressExampleSimple = () => (
+  <div>
+    <CircularProgress style={{marginTop: 20}} />
+  </div>
+);
 const styles = {
   underlineStyle: {
     borderColor: orange500,
   }
 };
-
-// var JSONelement = React.createClass({
-//   render: function () {
-//     return <div style={{width:'50%',textAlign:'left'}}><pre>{JSON.stringify(this.props.json, null, 2) }</pre></div>;
-//   }
-// });
 
 class Search extends Component {
   constructor(props, context) {
@@ -30,7 +30,8 @@ class Search extends Component {
       json: null,
       searchValue: '',
       errorText: null,
-      generatedUrl: null
+      generatedUrl: null,
+      loading: false
     };
   }
 
@@ -47,6 +48,7 @@ class Search extends Component {
     if (this.state.searchValue === '') {
       this.setState({json: null});
     } else {
+      this.setState({loading: true});
       post(this.state.searchValue)
         .then(val => {
           if (val === 'invalid json') return;
@@ -55,11 +57,12 @@ class Search extends Component {
         .then(res => {
           this.setState({
             json: res.body,
-            generatedUrl: res.generatedUrl
+            generatedUrl: res.generatedUrl,
+            loading: false
           })
         })
         .catch(err => {
-          console.log('err  CLIENT _____', err);
+          console.log('err client catch', err);
         });
     }
   }
@@ -101,6 +104,9 @@ class Search extends Component {
                   disabledBackgroundColor="gray"
                   disabled={!!this.state.errorText}
                 />
+                {
+                  this.state.loading && <CircularProgressExampleSimple />
+                }
               </div>
             </CardText>
           </Card>
@@ -109,6 +115,7 @@ class Search extends Component {
               this.state.generatedUrl && <Generated generatedUrl={this.state.generatedUrl} reset={this.reset}/>
             }
           </div>
+
         </div>
       </Paper>
     );
