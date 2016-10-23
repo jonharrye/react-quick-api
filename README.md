@@ -3,7 +3,7 @@
 
 Generate and deploy an API quickly by pasting a sample JSON response 
 
-## [DEMO](http://craven-taste.surge.sh/)
+## [USE IT NOW](http://quickapi.us/)
 
 
 
