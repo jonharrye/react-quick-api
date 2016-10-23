@@ -3,10 +3,10 @@ const request = require('superagent-bluebird-promise');
 import url from './config';
 
 export function get(query) {
-  const generatedUrl = `${url}/api/objects?object_id=${query}`;
+  const generatedUrl = `${url}/jso?n=${query}`;
   return request
-    .get(`${url}/api/objects`)
-    .query(`object_id=${query}`)
+    .get(`${url}/jso`)
+    .query(`n=${query}`)
     .then(checkStatus)
     .then(function (res) {
       return {

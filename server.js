@@ -5,11 +5,12 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const uuid = require('node-uuid');
 const assign = require('lodash.assign');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const JSONS = require('json-serialize');
+var shortid = require('shortid');
+
 const dburl = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`;
 console.log('dburl ', dburl);
 
@@ -19,14 +20,11 @@ app.use(bodyParser.json());
 
 let db;
 
-app.get('/api/objects', (req, res) => {
-  const id = req.query.object_id;
+app.get('/jso', (req, res) => {
+  const id = req.query.n;
+  if (!id) return res.json({error: 'error'});
   db.collection('objects').findOne({object_id: id}, (err, result) => {
-    if (err) {
-      return res.json({
-        error: err
-      })
-    }
+    if (err) return res.json({ error: err });
     res.json(JSONS.deserialize(result.object));
   })
 });
@@ -40,8 +38,9 @@ app.post('/api/objects', (req, res) => {
     console.log('err invalid json', err);
     return res.json({error: 'invalid json'})
   }
+  const uuid = shortid.generate();
   const obj = assign(body, {
-    object_id: uuid.v4(),
+    object_id: uuid,
     object: JSONS.serialize(body.object)
   });
   db.collection('objects').save(obj, (err, result) => {

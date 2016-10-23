@@ -52,7 +52,7 @@ class Generated extends Component {
     return (
       <div>
         <Dialog
-          title="Congrats, your api is live"
+          title="Congrats, your api is live!"
           actions={actions}
           modal={false}
           open={this.state.open}
