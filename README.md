@@ -3,7 +3,7 @@
 
 Generate a deployed API response quickly by pasting a sample JSON response 
 
-## [DEMO](http://voracious-shake.surge.sh/)
+## [DEMO](http://craven-taste.surge.sh/)
 
 
 
