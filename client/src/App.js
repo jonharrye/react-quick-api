@@ -56,7 +56,6 @@ class App extends Component {
           <h1>quick api <Help className="help" color="#fff" onTouchTap={this.handleTouchTap}/>
           </h1>
           <Search />
-
         </div>
       </MuiThemeProvider>
     );

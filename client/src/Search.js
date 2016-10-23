@@ -93,8 +93,9 @@ class Search extends Component {
                 rows={2}
                 value={this.state.searchValue}
                 onChange={this.handleSearchChange}
-                style={{width: '75%'}}
-                floatingLabelStyle={{float: 'right'}}
+                style={{width:'75%'}}
+                floatingLabelFixed={false}
+                floatingLabelStyle={{left:0}}
               />
               <div className="btn-container">
                 <RaisedButton
