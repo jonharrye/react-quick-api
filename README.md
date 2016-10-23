@@ -1,7 +1,7 @@
 # `react-quick-api` 
 
 
-Generate a deployed API response quickly by pasting a sample JSON response 
+Generate and deploy an API quickly by pasting a sample JSON response 
 
 ## [DEMO](http://craven-taste.surge.sh/)
 
