@@ -24,13 +24,17 @@ app.use(bodyParser.urlencoded({limit: '1mb', extended: true}));
 app.use(cors());
 app.use(express.static(path.join(__dirname, './public')));
 
+function renderErr(res, page) {
+  return res.render(`${page}.pug`);
+}
+
 app.get('/', (req, res) => res.render('home'));
 
 app.get('/jso', (req, res) => {
   const id = req.query.n;
-  if (!id) return res.render('404.pug');
+  if (!id) renderErr(res, 'error');
   db.collection('objects').findOne({object_id: id}, (err, result) => {
-    if (err) return res.json({error: err});
+    if (err || !result) renderErr(res, 'error');
     res.json(JSONS.deserialize(result.object));
   })
 });
@@ -57,10 +61,13 @@ app.post('/api/objects', (req, res) => {
 });
 
 // if user tries to visit malformatted url
-app.get('*', (req, res) => res.render('404.pug'));
+app.get('*', (req, res) => renderErr(res, '404'));
 
 MongoClient.connect(`${dburl}:63536/react-quick-api`, (err, database) => {
-  if (err) return console.log(err);
+  if (err) {
+    console.log('MongoClient.connect err', err);
+    renderErr(res, '404');
+  }
   db = database;
   /**
    * Start Express server.
