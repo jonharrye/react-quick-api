@@ -63,6 +63,7 @@ class Search extends Component {
         })
         .catch(err => {
           console.log('err client catch', err);
+          return alert('error:', err);
         });
     }
   }

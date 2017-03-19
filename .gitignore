@@ -5,3 +5,4 @@ npm-debug.log
 client/node_modules
 .env
 CNAME
+.DS_Store

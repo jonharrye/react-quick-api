@@ -24,17 +24,20 @@ export function post(object) {
     .send({object: object})
     .then(checkStatus)
     .then(function (res) {
+      console.log('res POST.then' , res);
       if (res.body.error){
         return res.body.error
       }
       return res.body
     })
     .catch(err => {
-      return new Error(err);
+      console.log('err POST.catch ' , err);
+      throw new Error(err);
     });
 }
 
 function checkStatus(response) {
+  console.log('response checkstatus()' , response);
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {
