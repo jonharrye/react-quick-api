@@ -3,8 +3,7 @@
 
 Generate and deploy an API quickly by pasting a sample JSON response 
 
-
-![gif](https://d17oy1vhnax1f7.cloudfront.net/items/1e1r0W3E1x0w402A2J1x/Screen%20Recording%202016-10-23%20at%2010.37%20PM.gif)
+### [Check it](https://ns-btiokmhccw.now.sh/)
 
 
 
